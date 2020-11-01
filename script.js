@@ -48,25 +48,26 @@ window.addEventListener('load', function() {
       document.getElementById('faultyItems').style.visibility = 'visible';
       document.getElementById('pilotStatus').innerHTML = `Pilot ${pilotName.value} is ready.`;
       document.getElementById('copilotStatus').innerHTML = `Co-Pilot ${copilotName.value} is ready.`;
-      document.getElementById('launchStatus').innerHTML = `Shuttle not ready for launch.`
-      document.getElementById('launchStatus').style.color = 'red';
-      document.getElementById('cargoMass').innerHTML = `Too much cargo. Please enter a value less than 10,000 kg.`;
       
-      if (fuelLevel.value < 10000) {
-         console.log('too little fuel')
-         document.getElementById('fuelStatus').innerHTML = `Not enough fuel. Please enter a value of 10,000 liters or more.`;
-      } else if (Number(cargoMass.value)> 10000){
-         console.log('too much cargo');
-         // document.getElementById('cargoMass').innerHTML = `Too much cargo. Please enter a value less than 10,000 kg.`;
+      if (fuelLevel.value<10000 || cargoMass.value>10000) {
+         document.getElementById('launchStatus').innerHTML = `Shuttle not ready for launch.`
+         document.getElementById('launchStatus').style.color = 'red';
+
+         if (fuelLevel.value < 10000) {
+            console.log('too little fuel')
+            document.getElementById('fuelStatus').innerHTML = `Not enough fuel. Please enter a value of 10,000 liters or more.`;
+         };  
+         if (cargoMass.value > 10000){
+            console.log('too much cargo');
+            document.getElementById('cargoStatus').innerHTML = `Too much cargo. Please enter a value less than 10,000 kg.`;
+         }; 
+
       } else {
          console.log('enough fuel and little enough cargo')
          document.getElementById('launchStatus').innerHTML = `Shuttle is ready for launch.`
          document.getElementById('launchStatus').style.color = 'green';
-      }
-      
-      
-      
-      
+      };
+         
    });
 
 });
